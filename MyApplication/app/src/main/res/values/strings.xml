@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="text_message">どっち?</string>
+    <string name="cat_text_message">にゃーにゃー!</string>
+    <string name="dog_text_message">わんわん!</string>
+    <string name="cat_button_text">🐱</string>
+    <string name="dog_button_text">🐶</string>
+</resources>
