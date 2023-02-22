@@ -31,6 +31,9 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun AppScreen() {
 
+    // Column:縦に並べる
+    // Row:横に並べる
+    // Box:任意の位置に配置
     Column{
 
         Text("Hello")
@@ -49,11 +52,12 @@ fun AppScreen() {
         Text(text = story, color = Color.Blue, maxLines = 2)
         Text(text = story, color = Color.Green, maxLines = 1)
 
+        // border()とpadding()の順番注意
         Text(
             text = "Hello",
             modifier = Modifier
-                .background(Color.Gray)
-                .border(1.dp, Color.Red)
+                .background(Color.Gray)// 背景色
+                .border(1.dp, Color.Red)// 枠線
                 .padding(5.dp)
         )
 
@@ -64,12 +68,15 @@ fun AppScreen() {
                 .padding(20.dp)
         )
 
+        // onClick:ボタンをクリックしたときに呼び出されるコールバック関数
+        // {}:ボタンの表示を構成するコンポーザブル関数
         Button(
             onClick = { Log.d("Button", "onClick") }
         ) {
             Text(text = "Button")
         }
 
+        // mutableStateOfは、値の変更を監視する
         var count by remember { mutableStateOf(0) }
         Text(
             text = "Tap count: $count",
@@ -81,11 +88,13 @@ fun AppScreen() {
             Text(text = "Count up!")
         }
 
+        // 目立たせる際はTextField
+        // たくさん場合は、うるさくならないようにOutlinedTextField
         var text by remember { mutableStateOf("") }
-        OutlinedTextField(
+        TextField(
             value = text,
             onValueChange = { text = it },
-            label = { Text(text = "LLLabel") },
+            label = { Text(text = "LLLabel") },// ラベル
             modifier = Modifier.padding(20.dp)
         )
 
