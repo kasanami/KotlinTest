@@ -1,6 +1,7 @@
 package com.example.jetpacktest
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -8,6 +9,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -63,6 +65,12 @@ fun AppScreen() {
                 .background(color = Color(0xff66cdaa))
                 .padding(20.dp)
         )
+
+        Button(
+            onClick = { Log.d("Button", "onClick") }
+        ) {
+            Text(text = "Button")
+        }
     }
 }
 
