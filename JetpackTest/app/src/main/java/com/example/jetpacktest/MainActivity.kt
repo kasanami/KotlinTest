@@ -13,7 +13,7 @@ import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -70,6 +70,17 @@ fun AppScreen() {
             onClick = { Log.d("Button", "onClick") }
         ) {
             Text(text = "Button")
+        }
+
+        var count by remember { mutableStateOf(0) }
+        Text(
+            text = "Tap count: $count",
+            modifier = Modifier.padding(20.dp)
+        )
+        Button(
+            onClick = { count++ }
+        ) {
+            Text(text = "Count up!")
         }
     }
 }
