@@ -9,10 +9,8 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.width
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.Modifier
@@ -82,6 +80,22 @@ fun AppScreen() {
         ) {
             Text(text = "Count up!")
         }
+
+        var text by remember { mutableStateOf("") }
+        OutlinedTextField(
+            value = text,
+            onValueChange = { text = it },
+            label = { Text(text = "LLLabel") },
+            modifier = Modifier.padding(20.dp)
+        )
+
+        OutlinedTextField(
+            value = text,
+            onValueChange = { text = it },
+            modifier = Modifier.padding(20.dp).width(200.dp),
+            singleLine = false,
+            maxLines = 5
+        )
     }
 }
 
