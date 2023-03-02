@@ -113,21 +113,24 @@ fun AppScreen2() {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
+        val animalList = listOf<Animal>(
+            Animal("Dog", R.drawable.dog),
+            Animal("Cat", R.drawable.cat),
+            Animal("Bird", R.drawable.bird),
+        )
+
         Row {
-            AnimalComposable(
-                resourceId = R.drawable.dog,
-                text = "Dog",
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(10.dp)
-            )
-            AnimalComposable(
-                resourceId = R.drawable.cat,
-                text = "Cat",
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(10.dp)
-            )
+
+            for (animal in animalList) {
+                AnimalComposable(
+                    resourceId = animal.resourceId,
+                    text = animal.text,
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(10.dp)
+                )
+            }
         }
         var isButtonPressed by remember { mutableStateOf(false) }
 
@@ -139,6 +142,8 @@ fun AppScreen2() {
         }
     }
 }
+
+class Animal(var text: String,var resourceId:Int)
 
 @Composable
 fun ResponseComposable() {
