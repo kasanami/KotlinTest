@@ -4,16 +4,17 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -23,7 +24,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            AppScreen()
+            AppScreen2()
         }
     }
 }
@@ -107,7 +108,80 @@ fun AppScreen() {
         )
     }
 }
+@Composable
+fun AppScreen2() {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Row {
+            AnimalComposable(
+                resourceId = R.drawable.dog,
+                text = "Dog",
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(10.dp)
+            )
+            AnimalComposable(
+                resourceId = R.drawable.cat,
+                text = "Cat",
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(10.dp)
+            )
+        }
+        var isButtonPressed by remember { mutableStateOf(false) }
 
+        QuestionComposable {
+            isButtonPressed = true
+        }
+        if (isButtonPressed) {
+            ResponseComposable()
+        }
+    }
+}
+
+@Composable
+fun ResponseComposable() {
+    Text(
+        text = "Thank you!!!",
+        fontSize = 25.sp
+    )
+}
+@Composable
+fun AnimalComposable(resourceId: Int, text: String, modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Image(
+            painter = painterResource(id = resourceId),
+            contentDescription = null,
+            modifier = Modifier
+                .fillMaxWidth()
+                .aspectRatio(1f),
+            contentScale = ContentScale.Crop
+        )
+        Text(
+            text = text,
+            fontSize = 20.sp,
+        )
+    }
+}
+
+@Composable
+fun QuestionComposable(onClick: ()->Unit = {}) {
+    Text(
+        text = "Do you like animals?",
+        fontSize = 25.sp,
+        modifier = Modifier.padding(vertical = 10.dp)
+    )
+    Button(
+        onClick = onClick,
+        modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp)
+    ) {
+        Text(text = "Yes")
+    }
+}
 /*
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
